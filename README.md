@@ -1,57 +1,41 @@
-#Rails Soft Delete Application
+# Rails Soft Delete Application
 
-**Overview**
-This Ruby on Rails application implements soft delete functionality, allowing records to be marked as deleted without being permanently removed from the database. Instead of deletion, the deleted_at column in the Item model is set to a timestamp, ensuring data integrity and the ability to restore records when needed.
+## Overview
+A Ruby on Rails implementation of soft delete functionality using `deleted_at` timestamps to preserve data while supporting deletion workflows.
 
-Features
-✅ Soft Delete – Instead of permanently deleting a record, the system sets the deleted_at column to the current timestamp.
-✅ Restore Functionality – Soft-deleted records can be restored with a single click, resetting deleted_at to nil.
-✅ Default Scope for Active Records – By default, only records where deleted_at is nil are included in queries.
-✅ User Interface Support – Deleted records remain visible in the UI and can be restored via an intuitive interface.
+## Features
+- 🗑️ **Soft Delete**: Records are marked deleted instead of being destroyed
+- 🔄 **Restore**: One-click restoration of deleted items
+- 🔍 **Default Scoping**: Automatically filters out deleted records
+- 👁️ **Visibility**: Deleted records remain visible with clear indicators
 
-Project Snapshots
-Screenshots of the application can be found in the public/project-image folder.
+## Installation & Setup
 
-Example:
+### 1. Clone and Enter Directory
 
-Installation & Setup
-1️⃣ Clone the Repository
-
-bash
-Copy
-Edit
 git clone https://github.com/Azharsheikh12/Soft-Delete-test-task.git
-cd YOUR_REPO_NAME
-2️⃣ Install Dependencies
+cd Soft-Delete-test-task
 
-bash
-Copy
-Edit
+### 2. Install Dependencies
+
 bundle install
-3️⃣ Set Up the Database
 
-bash
-Copy
-Edit
-rake db:create db:migrate
-4️⃣ Precompile Assets (Required for production or if assets are missing)
 
-bash
-Copy
-Edit
+### 3. Setup Database
+
+rails db:create db:migrate
+
+
+### 4. Precompile Assets (If Needed)
+
 rails assets:precompile
-5️⃣ Start the Rails Server
 
-bash
-Copy
-Edit
-rails s
-6️⃣ Access the Application
-Visit http://localhost:3000 in your browser to access the UI.
 
-Usage Instructions
-Deleting a Record: Click the Delete button on a record to soft delete it.
+### 5. Start the Server
 
-Viewing Deleted Records: Deleted records will remain visible but flagged as deleted.
+rails server # or shorthand: rails s
 
-Restoring a Record: Click the Restore button to bring back a deleted record.
+### 6. Access Application
+
+Visit in your browser:
+http://localhost:3000
