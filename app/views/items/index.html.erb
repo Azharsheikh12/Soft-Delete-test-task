@@ -1,0 +1,47 @@
+<h1 class="header">Items</h1>
+
+<% if flash[:notice] %>
+  <div class="flash flash-success">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="flash flash-error">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="item-list">
+  <ul class="item-list-ul">
+    <% @items.each do |item| %>
+      <li class="item">
+        <strong><%= item.name %></strong>
+        <%= button_to 'Delete', item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<h2 class="subheader">Add a New Item</h2>
+<div class="form-container">
+  <%= form_with model: @item, url: items_path, local: true do |form| %>
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true, class: 'form-input' %>
+    </div>
+    <div class="form-group">
+      <%= form.submit 'Add Item', class: 'submit-button' %>
+    </div>
+  <% end %>
+</div>
+
+<h2 class="subheader">Deleted Items</h2>
+<div class="deleted-item-list">
+  <ul class="item-list-ul">
+    <% Item.unscoped.where.not(deleted_at: nil).each do |item| %>
+      <li class="item">
+        <strong><%= item.name %></strong>
+        <%= button_to 'Restore', restore_item_path(item), method: :post, class: 'restore-button' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
